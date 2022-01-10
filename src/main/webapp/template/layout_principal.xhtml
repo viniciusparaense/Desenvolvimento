@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head >
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <div align="center">
+            <h2  style="font-size: xx-large;font-style: oblique;color: #e7e569;background-color: #424b54" 
+                >LOCDOC 1.0</h2>   
+        </div>
+      
+       </h:head>
+    
+    <h:body>
+
+        <div id="top">
+            <ui:insert name="top">
+
+                <h:form>
+                    <p:spacer height="0.1%"/>
+                    <div align="right">
+
+                        <p:outputLabel style="color: black;font-size: smaller" value="Usuário Logado: "/>
+                        <p:outputLabel style="color: black;font-size: smaller" value="#{usuarioBean.user}"/> 
+
+                    </div>
+
+                    <p:tabMenu activeIndex="#{param.i}">
+                        
+                        <p:menuitem    value="Home"  ajax="false" icon="ui-icon-home"  outcome="/home/home.xhtml">
+                            <f:param name="i" value="0" />
+                          
+                            
+                        </p:menuitem>
+                        <p:menuitem value="Criar novo Processo"  icon="ui-icon-pencil" outcome="/cadastrar/abrir_processo.xhtml">
+                            <f:param name="i" value="1" />
+                        </p:menuitem>
+
+                        <p:menuitem value="Lista de Processos" icon="ui-icon-document" outcome="/localizar/listar_processo">
+                            <f:param name="i" value="2" />
+                        </p:menuitem>
+
+                        <p:menuitem value="Pesquisar"  icon="ui-icon-search" outcome="/localizar/l_processo.xhtml" >
+                            <f:param name="i" value="3" />
+                        </p:menuitem>
+                        
+                          <p:menuitem value="Email" ajax="false" outcome="/email/email.xhtml" icon="ui-icon-mail-closed" >
+                            <f:param name="i" value="4" />
+                        </p:menuitem>
+
+                        <p:menuitem value="Logout" ajax="false"  icon="ui-icon-power" outcome="/login.xhtml" >
+                            <f:param name="i" value="5" />
+                        </p:menuitem>
+
+                    </p:tabMenu>
+
+                </h:form>
+
+            </ui:insert>
+        </div>
+
+        <div id="content">
+            <ui:insert name="content">
+
+            </ui:insert>
+        </div>
+
+
+        <div id="bottom">
+            <ui:insert name="bottom">
+                <form >
+                    <p:spacer  width="1%"/>
+                    <div  align="center" style="font-size: small;color: #e7e569;background-color:#424b54;font-style: italic">Todos os Direitos Reservados ao Desenvolvedor</div>
+
+                </form>
+
+            </ui:insert>
+        </div>
+
+    </h:body>
+
+</html>

@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  template="/template/layout_principal.xhtml"
+                 xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:ui="http://java.sun.com/jsf/facelets"
+                 xmlns:h="http://java.sun.com/jsf/html"
+                 xmlns:p="http://primefaces.org/ui"
+                 xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <h:form id = "form">
+            <p:growl id="msg" sticky="false" showDetail="true" />
+
+            <p:panel header="Pesquisa de Solicitante">
+                <h:panelGrid columns="4" border="0">
+
+                    <p:outputLabel value="Nome do solicitante: "  />
+                    <p:inputText value="#{soBean.parametro}"/>
+                    <p:commandButton value="Pesquisar" actionListener="#{soBean.retornarSolicitante()}" ajax="true" update="form" />
+
+                    <p:commandButton value="Duvidas ?" type="button" onclick="PF('dlg3').show();" /> 
+
+                    <p:dialog header="Informativo" widgetVar="dlg3" showEffect="explode" hideEffect="bounce" width="30%" height="200%">
+                        <h:outputText escape="true" value="[1]- Preencha a pesquisa e informaçoes do Protocolo.
+                                      [2]- Se Preencher os campos automaticos e porque ja cadstrou.                                 
+                                      [3]- Caso nao Preencher, cadastre o usuario, preenchendo os dados do protocolo e clicle em cadastrar.
+                                      [4]- Pronto, seguindo esses passos, o protocolo foi aberto, va rapido para aba Lista de Processos!" />
+                    </p:dialog>
+
+                </h:panelGrid>
+            </p:panel>
+            <p:spacer height="1%"/>
+
+            <p:panel  header="Dados do Solicitante">
+                <h:panelGrid columns="2">
+
+                    <h:panelGrid columns="4">
+
+                        <p:outputLabel value="Nome: "/>
+                        <p:inputText value="#{soBean.nome}"/>
+                        <p:outputLabel value="Email: "/>
+                        <p:inputText value="#{soBean.email}"/>
+                        <p:outputLabel value="Telefone: "/>
+                        <p:inputText value="#{soBean.telefone}"/>
+                        <p:outputLabel value="Endereço: "/>
+                        <p:inputText value="#{soBean.endereco}"/>
+
+                    </h:panelGrid>
+
+                    <h:panelGrid columns="1">
+                        
+                        <p:commandButton value="Cadastrar" action="#{soBean.cadastrarSolicitante()}"
+                                         ajax="false"/>
+                        <p:commandButton value="Limpar" type="reset" style="width: 99%"/>
+                        <p:outputLabel value=" "/>
+                        <p:outputLabel value=" "/>
+
+                    </h:panelGrid>
+
+                </h:panelGrid>
+            </p:panel>
+            
+            <p:spacer height="1%"/>
+
+            <p:panel header="Informaçoes do Protocolo">
+
+                <h:panelGrid columns="4">
+
+                    <p:outputLabel for="event" value="Data:" />
+                    <p:calendar id="event" value="#{soBean.date}" required="true" requiredMessage="Data Obrigatoria">
+                        <p:ajax event="dateSelect" listener="#{soBean.onDateSelect}" update="msg" />
+                    </p:calendar>
+
+                    <p:outputLabel value="Tipo:" />
+                    <p:selectOneMenu value="#{soBean.tipo}" >
+
+                        <f:selectItem itemLabel="Historico" itemValue="1"/>
+                        <f:selectItem itemLabel="Matricula" itemValue="2"/>
+
+
+                    </p:selectOneMenu>
+
+                </h:panelGrid>
+
+            </p:panel>
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../template/layout_principal.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <h:form id="f1">
+            <p:growl id="msg" sticky="false" showDetail="true" />
+            <p:panel header="Email">
+
+                <h:panelGrid id="pg"  columns="9" border="0" style="columns: auto;  ">
+                    <p:outputLabel value="Nome do solicitante:"  />
+                    <p:inputText value="#{emailBean.nome}" required="true"/>
+                    <p:commandButton  value="Pesquisar/Enviar" actionListener="#{emailBean.sendMail()}" update="f1" ajax="true"/>
+                    <p:outputLabel value="Destinatário:" style="margin: auto " />
+                    <p:inputText value="#{emailBean.to}" disabled="true" />
+                    <p:outputLabel value="Assunto:"  />
+                    <p:inputText value="#{emailBean.subject}" />
+
+                </h:panelGrid>
+
+            </p:panel>
+           
+            <p:panel   style="height: 52%; width: 100%; margin: auto" header="Correio Eletrônico">
+
+                <p:editor id="editor" widgetVar="editorWidget" value="#{emailBean.text}" style="width: 100%" />
+
+                <h:panelGrid columns="2" style="margin-top: 10px">
+
+                    <p:commandButton value="Limpar Mensagem" type="button" onclick="PF('editorWidget').clear();" icon="ui-icon-close" />
+                </h:panelGrid>
+
+            </p:panel>    
+
+</h:form>
+    </ui:define>
+
+</ui:composition>

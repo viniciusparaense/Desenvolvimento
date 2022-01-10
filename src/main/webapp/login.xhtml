@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <div align="center">
+           <h2  style="font-size: xx-large;font-style: oblique;color: #e7e569;background-color: #424b54" 
+                >LOCDOC - Versão 1.0</h2>   
+        </div>
+      
+    </h:head>    
+    
+        <h:body style="background-color: #c2dfef">
+        <h:form>
+            <p:panel id="panel" header="Área de Login" >         
+                <p:spacer width="80"/>                 
+
+                <h:panelGrid columns="3"  style="margin: auto;">
+
+                    <p:outputLabel for="Login" value="Login:"/>
+                    <p:inputText value="#{usuarioBean.login}" id="Login" style="width: 240px" required="true" autocomplete="false" label="Login">               
+                    </p:inputText>
+
+                    <p:message for="Login" id="msgLogin" display="icon" />
+
+                    <p:outputLabel for="Senha" value="Senha:" />
+                    <p:password value="#{usuarioBean.senha}" id="Senha"  style="width: 240px"  required="true" label="Senha" autocomplete="false">
+                        <p:ajax update="msgSenha" event="keyup" />
+
+                    </p:password>  
+
+                    <p:message for="Senha" id ="msgSenha" display="icon" /><br></br>
+
+                    <p:commandButton action="#{usuarioBean.autenticacao()}"
+                                     value="Fazer Login" ajax="false"  style="width: 250px"/>
+
+                    <p:link style="color: blue" value="Esqueceu sua senha?" outcome="alteracao/esquecer_senha.xhtml" />
+
+                </h:panelGrid>
+                                 
+                <p:spacer width="80"  />      
+            </p:panel>  
+                       
+                    <p:spacer  width="1%"/>
+                    <div  align="center" style="font-size: small;color: #e7e569;background-color:#424b54;font-style: italic">Todos os Direitos Reservados ao Desenvolvedor</div>
+
+             
+                            
+        </h:form>
+    </h:body>
+    
+</html>
+

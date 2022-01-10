@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/layout_principal.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+      
+        <form>
+            <p:outputLabel value="#{usuario.login}" />
+              <p:panel style="width: 100%;height: 50%">
+              <p:spacer  width="150px"/>
+             <div style="font-size: 150%;color: blue" align="center" >Seja Bem-Vindo ao Sistema!</div>
+             
+        </p:panel>
+       
+        </form>
+        
+        <p:spacer height="5" />
+
+    </ui:define>
+
+</ui:composition>

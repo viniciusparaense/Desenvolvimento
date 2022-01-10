@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  template="/template/layout_principal.xhtml"
+                 xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:ui="http://java.sun.com/jsf/facelets"
+                 xmlns:h="http://java.sun.com/jsf/html"
+                 xmlns:f="http://java.sun.com/jsf/core"
+                 xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+
+        <h:form id="f1">
+
+            <p:growl id="growl" sticky="false" showDetail="true" />
+
+            <p:panel header="Pesquisar Histórico">
+
+                <h:panelGrid columns="3" border="0" style="columns: auto;  ">
+                    <p:outputLabel value="Numero do processo:"  />
+                    <p:inputText value="#{protocoloBean.proto.id_protocolo}" required="true"/>
+                    <p:commandButton  value="Pesquisar" 
+                                      action="#{protocoloBean.consultaProtocolo()}" update="f1" ajax="true"/>
+
+                </h:panelGrid>
+
+            </p:panel>
+
+       
+
+        <p:panel id="p1"  style="height: 50%; width: 100%; margin: auto" header="Informações do Histórico">
+
+
+            <div align="left">
+
+                <h:panelGrid  style="width: auto;height:auto;margin-right: auto" border="0" cellpadding="10"  id="pg" columns="2">
+
+                    <p:outputLabel value="Nº do Processo:" style="margin: auto " />
+                    <p:outputLabel value="#{protocoloBean.proto.id_protocolo}" style="width: 100%; margin: auto" />
+
+                    <p:outputLabel value="Data:" style="margin-right: auto" />
+                    <p:outputLabel value="#{protocoloBean.proto.data}" style="width: 100%;" />
+
+                    <p:outputLabel value="Tipo:" style="margin-right: auto" />
+                    <p:outputLabel value="#{protocoloBean.tipo}" style="width: 100%;" />
+
+                    <p:outputLabel value="Solicitante:" style="margin-right: auto" />
+                    <p:outputLabel value="#{protocoloBean.solcitante}" style="width: 100%;" />
+
+                    <p:outputLabel value="Receptor:" style="margin-right: auto" />
+                    <p:outputLabel value="#{protocoloBean.usuario}" style="width: 100%;" />
+
+                    <p:outputLabel value="Status:" style="margin-right: auto" />
+                    <p:outputLabel value="#{protocoloBean.proto.status}" style="width: 100%;" />
+
+                </h:panelGrid>
+
+                    <h:panelGrid>
+                        <p:commandButton value="Print" type="button" icon="ui-icon-print" style="display:block;margin-bottom: 20px">
+                            <p:printer target="pg" />
+                        </p:commandButton>
+                    </h:panelGrid>
+              
+            </div> 
+            
+           
+            <p:spacer height="150px" />
+        </p:panel>    
+
+  </h:form>
+    </ui:define>
+
+</ui:composition>
